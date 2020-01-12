@@ -22,6 +22,7 @@ import RadialGradient from 'react-native-radial-gradient';
 import * as FileSystem from 'react-native-fs';
 
 import styles from './styles';
+import DataStructure from './DataStructure';
 
 const EXTERNAL_STORAGE_PATH =
   FileSystem.ExternalStorageDirectoryPath + '/LuBanCupSorter';
@@ -29,6 +30,8 @@ const EXTERNAL_STORAGE_PATH =
 export default class App extends Component {
   constructor(props) {
     super(props);
+
+    this.dataArray = [];
 
     this.state = {
       hl1On: false,
@@ -42,6 +45,37 @@ export default class App extends Component {
 
       qsPressed: false,
     };
+  }
+
+  parseDataPhrase(dataPhrase) {
+    return new DataStructure(
+      dataPhrase.charAt(1),
+      dataPhrase.charAt(5),
+      dataPhrase.charAt(7),
+      dataPhrase.charAt(3),
+      dataPhrase.charAt(9),
+      dataPhrase.charAt(11),
+      dataPhrase.charAt(13),
+      dataPhrase.charAt(15),
+      dataPhrase.charAt(17),
+      dataPhrase.charAt(19),
+      dataPhrase.charAt(21),
+      dataPhrase.charAt(23),
+      dataPhrase.charAt(25),
+      dataPhrase.charAt(27),
+      dataPhrase.charAt(29),
+      dataPhrase.charAt(31),
+      dataPhrase.substring(33, 56),
+      new Date(
+        dataPhrase.substring(33, 36),
+        dataPhrase.substring(38, 39) - 1,
+        dataPhrase.substring(40, 41),
+        dataPhrase.substring(43, 44),
+        dataPhrase.substring(46, 47),
+        dataPhrase.substring(49, 50),
+        dataPhrase.substring(52, 54),
+      ),
+    );
   }
 
   async loadDataFile() {
@@ -86,7 +120,17 @@ export default class App extends Component {
 
       var dataPhrases = data.split(/\r\n|\r|\n/);
 
-      console.log(dataPhrases);
+      dataPhrases.forEach((phrase, index) => {
+        if (phrase.length !== 57) {
+          return;
+        }
+
+        let dataStructure = this.parseDataPhrase(phrase);
+
+        this.dataArray.push(dataStructure);
+      });
+
+      console.log(this.dataArray);
     } catch (err) {
       console.warn(err);
       ToastAndroid.show('Something went wrong!', ToastAndroid.LONG);
