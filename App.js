@@ -16,6 +16,7 @@ import {
   StatusBar,
   PermissionsAndroid,
   ToastAndroid,
+  Animated,
 } from 'react-native';
 
 import RadialGradient from 'react-native-radial-gradient';
@@ -32,6 +33,8 @@ export default class App extends Component {
     super(props);
 
     this.dataArray = [];
+
+    this.cupBottom = new Animated.Value(15);
 
     this.state = {
       hl1On: false,
@@ -131,6 +134,10 @@ export default class App extends Component {
       });
 
       console.log(this.dataArray);
+
+      Animated.sequence([
+          Animated.timing(this.cupBottom, {toValue: 200}),
+      ]).start();
     } catch (err) {
       console.warn(err);
       ToastAndroid.show('Something went wrong!', ToastAndroid.LONG);
@@ -155,9 +162,6 @@ export default class App extends Component {
             <View style={styles.CupReceiverFrame}>
               <View style={styles.CupReceiverFrameCenter} />
             </View>
-            <View style={styles.ColorSensorFrame}>
-              <View style={styles.ColorSensorFrameCenter} />
-            </View>
 
             <View style={styles.BlackCupFrame}>
               <View style={styles.CupStore} />
@@ -179,6 +183,12 @@ export default class App extends Component {
                 <View style={styles.CupCylinderPistonFront} />
               </View>
               <View style={styles.CupPistonCase} />
+            </View>
+
+            <Animated.View style={[styles.Cup, {bottom: this.cupBottom}]} />
+
+            <View style={styles.ColorSensorFrame}>
+              <View style={styles.ColorSensorFrameCenter} />
             </View>
           </View>
         </View>

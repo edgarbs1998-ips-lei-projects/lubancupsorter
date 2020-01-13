@@ -117,6 +117,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#808080',
   },
 
+  Cup: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#FF0000',
+    position: 'absolute',
+  },
+
   CommandInterface: {
     flex: 1,
     justifyContent: 'center',
