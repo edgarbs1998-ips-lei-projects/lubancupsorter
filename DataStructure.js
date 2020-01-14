@@ -22,7 +22,7 @@ export default class DataStructure {
    * @param {int} c6
    * @param {int} c7
    * @param {int} c8
-   * @param {int} timestamp
+   * @param {Date} date
    */
   constructor(
     s1,
@@ -41,7 +41,7 @@ export default class DataStructure {
     c6,
     c7,
     c8,
-    timestamp,
+    date,
   ) {
     this._s1 = s1;
     this._s2 = s2;
@@ -61,7 +61,7 @@ export default class DataStructure {
     this._c7 = c7;
     this._c8 = c8;
 
-    this._timestamp = timestamp;
+    this._date = date;
   }
 
   /**
@@ -193,10 +193,10 @@ export default class DataStructure {
   }
 
   /**
-   * Get the timestamp
-   * @return {int} timestamp
+   * Get the date
+   * @return {Date} date
    */
-  get getTimestamp() {
-    return this._timestamp;
+  get getDate() {
+    return this._date;
   }
 }

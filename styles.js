@@ -3,6 +3,11 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
+  BackgroundImage: {
+    width: '100%',
+    height: '100%',
+  },
+
   SorterStation: {
     flex: 3,
     justifyContent: 'center',
@@ -26,11 +31,6 @@ const styles = StyleSheet.create({
     width: '80%',
     height: '100%',
   },
-  // ConveyorBeltAnimation: {
-  //   width: 70,
-  //   height: 2,
-  //   backgroundColor: '#ffffff',
-  // },
 
   CupReceiverFrame: {
     position: 'absolute',
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderTopWidth: 0,
     borderColor: '#A9A9A9',
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
   },
 
   ColorSensorFrame: {
@@ -87,10 +87,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  CupStoreText: {
+    textAlign: 'center',
+    left: -46,
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  CupStoreView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  CupStoreTotalText: {
+    left: -64,
+    textAlign: 'right',
+    width: 26,
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
   CupStore: {
     width: 100,
     height: 30,
-    left: -46,
+    left: -59,
     backgroundColor: '#C0C0C0',
     borderWidth: 4,
     borderColor: '#A9A9A9',
@@ -100,7 +117,7 @@ const styles = StyleSheet.create({
   CupCylinderPiston: {
     width: 40,
     height: 5,
-    right: -22,
+    bottom: -10,
     backgroundColor: '#D3D3D3',
     justifyContent: 'center',
   },
@@ -113,15 +130,23 @@ const styles = StyleSheet.create({
   CupPistonCase: {
     width: 40,
     height: 15,
-    right: 14,
+    right: 27,
+    bottom: -10,
     backgroundColor: '#808080',
+  },
+
+  TotalText: {
+    marginTop: 6,
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 
   Cup: {
     width: 20,
     height: 20,
     borderRadius: 10,
-    backgroundColor: '#FF0000',
+    borderWidth: 3,
+    borderColor: '#328da8',
     position: 'absolute',
   },
 
@@ -132,11 +157,11 @@ const styles = StyleSheet.create({
   },
   CommandCase: {
     flexDirection: 'row',
-    backgroundColor: '#C0C0C0',
+    backgroundColor: '#A9A9A9',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 4,
-    borderColor: '#A9A9A9',
+    borderColor: '#808080',
     width: 300,
     height: 100,
   },
@@ -232,6 +257,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  CommandQS1Image: {
+    borderRadius: 17,
   },
 });
 
