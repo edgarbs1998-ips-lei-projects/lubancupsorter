@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
 
   SorterStation: {
-    flex: 3,
+    flex: 4,
     justifyContent: 'center',
     alignItems: 'center',
   },

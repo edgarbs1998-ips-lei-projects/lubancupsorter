@@ -33,6 +33,9 @@ export default class App extends Component {
 
     this.sortingCup = false;
 
+    /* Statistics */
+    this.lastPhraseTimestamp = 0;
+
     /* Component onLayout get props */
     this.sorterFrameHeight = 0;
     this.blackCupFrameTop = 0;
@@ -72,10 +75,18 @@ export default class App extends Component {
       statisticsMetalSortedCups: 0,
       statisticsTotalSortedCups: 0,
       statisticsTotalUnsortedCups: 0,
+      statisticsTotalSimulationTime: 0,
     };
   }
 
   onDataPhraseReceive(me, dataPhrase) {
+    if (me.lastPhraseTimestamp > 0) {
+      me.state.statisticsTotalSimulationTime +=
+        dataPhrase.getDate.getTime() - me.lastPhraseTimestamp;
+    }
+
+    me.lastPhraseTimestamp = dataPhrase.getDate.getTime();
+
     me.setState({commandInterfaceHL1On: dataPhrase.getC1 === '1'});
     me.setState({commandInterfaceHL2On: dataPhrase.getC2 === '1'});
     me.setState({commandInterfaceHL3On: dataPhrase.getC3 === '1'});
@@ -388,6 +399,21 @@ export default class App extends Component {
           </Text>
           <Text style={styles.TotalText}>
             Total of unsorted cups: {this.state.statisticsTotalUnsortedCups}
+          </Text>
+          <Text style={styles.TotalText}>
+            Total simulation time:{' '}
+            {this.state.statisticsTotalSimulationTime / 1000}s
+          </Text>
+          <Text style={styles.TotalText}>
+            Average cups per 10 seconds:{' '}
+            {this.state.statisticsTotalSortedCups > 0 &&
+            this.state.statisticsTotalSimulationTime > 0
+              ? Math.round(
+                  ((this.state.statisticsTotalSortedCups * 10) /
+                    (this.state.statisticsTotalSimulationTime / 1000)) *
+                    100,
+                ) / 100
+              : 0}
           </Text>
         </View>
 
